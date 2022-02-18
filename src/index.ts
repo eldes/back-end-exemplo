@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import Categoria from './models/categoria'
 
 // Porta do servidor
 const PORT = process.env.PORT || 4000
@@ -13,6 +14,22 @@ const app = express()
 // Endpoint raiz
 app.get('/', (req, res) => {
 	res.send('Bem-vindo!')
+})
+
+// Endpoint para listar todas categorias
+app.get('/categorias', (req, res) => {
+	const categorias: Categoria[] = [
+		{
+			id: 1,
+			nome: 'Bares',
+		},
+		{
+			id: 2,
+			nome: 'Restaurantes',
+		},
+	]
+
+	res.json(categorias)
 })
 
 // Cors
