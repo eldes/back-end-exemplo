@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import Categoria from './models/categoria'
 import routerCategorias from './routers/categorias'
+import path from 'path'
 
 // Porta do servidor
 const PORT = process.env.PORT || 4000
@@ -16,6 +17,8 @@ const app = express()
 app.get('/', (req, res) => {
 	res.send('Bem-vindo!')
 })
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Endpoints para as rotas de categorias
 app.use('/', routerCategorias)
