@@ -6,9 +6,11 @@ const routerCategorias = express.Router()
 
 // Endpoint para listar todas categorias
 routerCategorias.get('/categorias', (req, res) => {
-	const categorias: Categoria[] = repositoryCategorias.lerTodas()
+	const lerTodasCallback = (categorias: Categoria[]) => {
+		res.json(categorias)
+	}
 
-	res.json(categorias)
+	repositoryCategorias.lerTodas(lerTodasCallback)
 })
 
 // Endpoint para retornar os dados de uma categoria específica
