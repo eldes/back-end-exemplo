@@ -16,9 +16,11 @@ routerCategorias.get('/categorias', (req, res) => {
 // Endpoint para retornar os dados de uma categoria específica
 routerCategorias.get('/categorias/:id', (req, res) => {
 	const id: number = Number.parseInt(req.params.id)
-	const categoria: Categoria = repositoryCategorias.ler(id)
+	const lerCallback = (categoria: Categoria) => {
+		res.json(categoria)
+	}
 
-	res.json(categoria)
+	repositoryCategorias.ler(id, lerCallback)
 })
 
 export default routerCategorias

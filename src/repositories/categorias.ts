@@ -13,13 +13,15 @@ const repositoryCategorias = {
 		database.all(sql, allCallback)
 	},
 
-	ler: (id: number) => {
-		const categoria: Categoria = {
-			id: 1,
-			nome: 'Bares',
+	ler: (id: number, callback: (categoria: Categoria) => void) => {
+
+		const sql = `SELECT * FROM categorias WHERE id = ${id}`
+
+		const getCallback = (err: Error | null, categoria: Categoria) => {
+			callback(categoria)
 		}
 
-		return categoria
+		database.get(sql, getCallback)
 	},
 }
 
