@@ -20,13 +20,13 @@ app.get('/', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-// Endpoints para as rotas de categorias
-app.use('/', routerCategorias)
-
 // Cors
 app.use(cors({
 	origin: ['http://localhost:3000']
 }))
+
+// Endpoints para as rotas de categorias
+app.use('/', routerCategorias)
 
 // Resposta padrão para quaisquer outras requisições:
 app.use((req, res) => {
