@@ -5,7 +5,16 @@ const DBSOURCE = 'db.sqlite'
 const SQL_CATEGORIAS_CREATE = `
     CREATE TABLE categorias (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT
+        nome TEXT,
+        idPai INTEGER DEFAULT NULL,
+        FOREIGN KEY(idPai) REFERENCES categorias(id)
+    )`
+
+const SQL_PRODUTOS_CREATE = `
+    CREATE TABLE produtos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT,
+        preco REAL
     )`
 
 const database = new sqlite3.Database(DBSOURCE, (err) => {
@@ -21,6 +30,14 @@ const database = new sqlite3.Database(DBSOURCE, (err) => {
                 console.log('Tabela categorias criada com sucesso.')
             }
         })
+        database.run(SQL_PRODUTOS_CREATE, (err) => {
+            if (err) {
+                // Possivelmente a tabela já foi criada
+            } else {
+                console.log('Tabela produtos criada com sucesso.')
+            }
+        })
+
     }
 })
 
