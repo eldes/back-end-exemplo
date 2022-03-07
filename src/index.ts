@@ -3,6 +3,7 @@ import cors from 'cors'
 import Categoria from './models/categoria'
 import routerCategorias from './routers/categorias'
 import path from 'path'
+import routerProdutos from './routers/produtos'
 
 // Porta do servidor
 const PORT = process.env.PORT || 4000
@@ -27,6 +28,9 @@ app.use(cors({
 
 // Endpoints para as rotas de categorias
 app.use('/', routerCategorias)
+
+// Endpoints para as rotas de produtos
+app.use('/', routerProdutos)
 
 // Resposta padrão para quaisquer outras requisições:
 app.use((req, res) => {
