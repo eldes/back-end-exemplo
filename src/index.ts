@@ -19,12 +19,12 @@ app.get('/', (req, res) => {
 	res.send('Bem-vindo!')
 })
 
-app.use(express.static(path.join(__dirname, 'public')))
-
 // Cors
 app.use(cors({
-	origin: ['http://localhost:3000']
+	origin: ['http://localhost:3000','https://front-end-exemplo.herokuapp.com/categorias']
 }))
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Endpoints para as rotas de categorias
 app.use('/', routerCategorias)
