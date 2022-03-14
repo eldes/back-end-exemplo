@@ -14,7 +14,9 @@ const SQL_PRODUTOS_CREATE = `
     CREATE TABLE produtos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
-        preco REAL
+        preco REAL,
+        categoriaId INTEGER NOT NULL,
+        FOREIGN KEY(categoriaId) REFERENCES categoria(id)
     )`
 
 const database = new sqlite3.Database(DBSOURCE, (err) => {

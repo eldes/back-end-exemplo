@@ -1,6 +1,8 @@
 import express from "express"
 import Categoria from "../models/categoria"
+import Produto from "../models/produto"
 import repositoryCategorias from "../repositories/categorias"
+import repositoryProdutos from "../repositories/produtos"
 
 const routerCategorias = express.Router()
 
@@ -27,6 +29,17 @@ routerCategorias.get('/categorias/:id', (req, res) => {
 	}
 
 	repositoryCategorias.ler(id, lerCallback)
+})
+
+// Endpoint para retornar um array com todos os produtos de uma categoria
+routerCategorias.get('/categorias/:id/produtos', (req, res) => {
+	const id: number = Number.parseInt(req.params.id)
+	
+	const lerCallback = (produtos: Produto[]) => {
+		res.json(produtos.filter(produto => produto.categoriaId === id))
+	}
+
+	repositoryProdutos.lerTodos(lerCallback)
 })
 
 export default routerCategorias
