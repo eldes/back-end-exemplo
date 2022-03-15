@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
 // Cors
 app.use(cors({
-	origin: ['http://localhost:3000','https://front-end-exemplo.herokuapp.com/categorias']
+	origin: ['http://localhost:3000','https://front-end-exemplo.herokuapp.com']
 }))
 
 app.use(express.static(path.join(__dirname, 'public')))
